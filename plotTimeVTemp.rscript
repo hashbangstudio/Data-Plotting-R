@@ -1,0 +1,17 @@
+data <- read.delim("test.dat")
+# Convert to data objects
+data[[1]] <- strptime(data[[1]], format="%Y-%m-%d %H:%M:%S") 
+# Set Type of window
+X11.options(type="Xlib")
+# Get a new x11 device window 
+x11(width=5 , height=5)
+# Save the current device to a variable
+plotDev1 <- dev.cur()
+# actually plot the data
+plot(data[,1], data[,-1], 
+    main='Temperature variation over time', 
+    xlab='Time', 
+    ylab='Temperature (Celsius)')
+# Wait for enter key to exit
+cat("press [enter] to exit\n")
+line <- readLines("stdin", n=1)
